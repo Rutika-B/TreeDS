@@ -1,0 +1,30 @@
+https://practice.geeksforgeeks.org/problems/inorder-successor-in-bst/1
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        return isvalid(root,LONG_MIN,LONG_MAX);
+    }
+    bool isvalid(TreeNode* root,long minRange,long maxRange)
+    {
+      if(root==NULL)
+      {
+        return true;
+      }
+      if(root->val <= minRange || root->val >= maxRange)
+      {
+        return false;
+      }
+      return (isvalid(root->left,minRange,root->val) && isvalid(root->right,root->val,maxRange));
+    }
+};
